@@ -42,8 +42,8 @@ class RobomasterNode:
             rospy.logerr("Could not connect to robot, shutting down.")
             return
         rospy.loginfo("Connected to robot.")
-        # self._robot.set_robot_mode(mode=robot.CHASSIS_LEAD)
-        self._robot.set_robot_mode(mode="free")
+        self._robot.set_robot_mode(mode=robot.CHASSIS_LEAD)
+        # self._robot.set_robot_mode(mode="free")
         self._robot.gimbal.recenter()
 
         # Mark ROS mode
