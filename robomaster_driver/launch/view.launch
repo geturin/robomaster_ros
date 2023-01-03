@@ -13,4 +13,14 @@
   <param name="/trajectory_update_rate" value="50.0" />
   <param name="/trajectory_publish_rate" value="50.0" />
   </node>
+
+  <!-- robot localization -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true" output="screen">
+    <rosparam command="load" file="$(find robomaster_driver)/config/S1.yaml" />
+    <param name="tf_prefix" value="vision_odom_base_link"/>
+    <remap from="/odometry/filtered" to="fusion/odom" />
+    <remap from="odom0" to="odom" />
+    <remap from="imu0"  to="imu/data" />
+  </node>
+
 </launch>
