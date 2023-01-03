@@ -1,17 +1,17 @@
 <launch>
 
   <!-- Load the robot description -->
-  <include file="$(find robomaster_description)/launch/load.launch"/>
+  <!-- <include file="$(find robomaster_description)/launch/load.launch"/> -->
 
   <!-- Launch a robot state publisher -->
-  <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub"/>
+  <!-- <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub"/> -->
 
   <!-- Launch the driver node -->
   <node name="robomaster_driver" pkg="robomaster_driver" type="robomaster_driver_node.py" output="screen">
   </node>
 
-   <!-- Launch rviz
-  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find robomaster_driver)/rviz/robomaster.rviz" /> -->
+   <!-- Launch rviz -->
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find robomaster_driver)/rviz/robomaster.rviz" />
 
     <!-- Load the Joy node -->
   <node name="joy_node" pkg="joy" type="joy_node" output="screen">
@@ -30,5 +30,14 @@
     <param name="axis_angular" value="3"/>
     <param name="scale_angular" value="1"/>
   </node>
+
+
+    <!-- robot localization -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true" output="screen">
+    <rosparam command="load" file="$(find robomaster_driver)/config/S1.yaml" />
+    <remap from="odom0" to="/odom" />
+    <remap from="imu0"  to="/imu/data" />
+  </node>
+  <node pkg="tf" type="static_transform_publisher" name="imu_to_base_link_tf_publisher" args="0 0 0 0 0 0 base_link imu_link 100"/>
 
 </launch>

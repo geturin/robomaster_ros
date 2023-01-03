@@ -63,7 +63,7 @@ class RobomasterNode:
         # Prepare odometry publishing
         self._init_orientation = None
         self._pub_odom_tf = rospy.get_param("~publish_odom_tf", True)
-        self._odom_include_attitude = rospy.get_param("~odom_include_attitude", True)
+        self._odom_include_attitude = rospy.get_param("~odom_include_attitude", False)
         self._pub_odom = rospy.Publisher("/odom", Odometry, queue_size=3)
         # self._robot.chassis.sub_velocity(freq=50, callback=self._vel_cb)
         self._robot.chassis.sub_position(cs=1, freq=50, callback=self._odom_cb)
