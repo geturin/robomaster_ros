@@ -1,6 +1,6 @@
 # for wheel and imu fusion
 
-frequency: 20
+frequency: 40
 sensor_timeout: 0.1
 two_d_mode: true
 transform_time_offset: 0.1
@@ -16,9 +16,9 @@ world_frame: odom
 
 #odom0: wheel odometry
 odom0: odom0
-odom0_config: [false, false, false,
+odom0_config: [true, true, false,
                false, false, true,
-               true , false, false,
+               false , false, false,
                false, false, true,
                false, false, false]
 
@@ -28,4 +28,4 @@ imu0_config: [false, false, false,
               false, false, true,
               false, false, false,
               false, false, true,
-              false, false, false]
+              true, true, true]
