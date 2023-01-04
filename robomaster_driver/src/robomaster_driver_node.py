@@ -160,8 +160,6 @@ class RobomasterNode:
         if not self._standing:
             self._robot.chassis.drive_speed(x=msg.linear.x, y=-msg.linear.y, z=-msg.angular.z/np.pi*180.0, timeout=1)
             # self._robot.chassis.drive_speed(x=msg.linear.x, y=-msg.linear.y, z=0, timeout=1)
-            self._robot.gimbal.drive_speed(pitch_speed=msg.angular.x,yaw_speed=msg.angular.y)
-
             # self._robot.chassis.drive_speed(x=0, y=0, z=-msg.linear.x*10/np.pi*180.0, timeout=1)
             # self._robot.gimbal.drive_speed(pitch_speed=msg.angular.x,yaw_speed=msg.angular.y)
 

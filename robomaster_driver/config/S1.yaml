@@ -11,12 +11,12 @@ publish_acceleration: false
 
 # map_frame: map
 odom_frame: odom
-base_link_frame: base_link
+base_link_frame: base_link_lo
 world_frame: odom
 
 #odom0: wheel odometry
 odom0: odom0
-odom0_config: [true, true, false,
+odom0_config: [false, false, false,
                false, false, true,
                true , false, false,
                false, false, true,
@@ -28,4 +28,4 @@ imu0_config: [false, false, false,
               false, false, true,
               false, false, false,
               false, false, true,
-              true, true, true]
+              false, false, false]
