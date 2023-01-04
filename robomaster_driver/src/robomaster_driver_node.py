@@ -50,6 +50,7 @@ class RobomasterNode:
         self._robot.led.set_led(comp=led.COMP_ALL, r=255, g=0, b=255, effect=led.EFFECT_ON)
 
         # Sub to cam
+        self._camera_rate = rospy.Rate(rospy.get_param("~camera_rate", 20))
         self._cv_bridge = CvBridge()
         self._img_pub = rospy.Publisher("/camera/image_raw", Image, queue_size=3)
         self._robot.camera.start_video_stream(display=False)
@@ -177,6 +178,7 @@ class RobomasterNode:
                 self._img_pub.publish(msg)
             except:
                 pass
+            self._camera_rate.sleep()
     
     def _controller_event(self,msg):
         if msg.linear.x ==1 :
