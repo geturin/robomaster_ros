@@ -148,7 +148,7 @@ class RobomasterNode:
             self._init_orientation = self._last_attitude
 
     def _twist_cb(self, msg):
-        self._robot.gimbal.drive_speed(pitch_speed=msg.angular.x,yaw_speed=msg.angular.y)
+        # self._robot.gimbal.drive_speed(pitch_speed=msg.angular.x,yaw_speed=msg.angular.y)
 
         if msg.linear.x != 0 or msg.linear.y != 0 or msg.angular.z != 0:
             self._standing = False
